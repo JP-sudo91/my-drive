@@ -16,13 +16,16 @@ const FolderWithNameContainer = styled("div")`
     width: 100px;
     word-wrap: break-word;
     font-weight: 500;
+    text-align: center;
   }
 `;
-const FolderWithName = () => {
+const FolderWithName = ({ folderName }) => {
   return (
     <FolderWithNameContainer>
-      <img src={FolderIcon} alt="foldericon" />
-      <span>NameOfTheFolder</span>
+      <div>
+        <img src={FolderIcon} alt="foldericon" />
+      </div>
+      <span>{folderName}</span>
     </FolderWithNameContainer>
   );
 };

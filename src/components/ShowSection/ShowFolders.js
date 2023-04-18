@@ -1,6 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
-import FolderWithName from '../Common/FolderWithName'
+import React, { useContext } from "react";
+import styled from "styled-components";
+import FolderWithName from "../Common/FolderWithName";
+import { GlobalContext } from "../../App";
 
 const ShowFolderContainer = styled("div")`
   .show-folder {
@@ -10,42 +11,17 @@ const ShowFolderContainer = styled("div")`
   }
 `;
 const ShowFolders = () => {
+  const { foldersArr, setFoldersArr } = useContext(GlobalContext);
   return (
     <ShowFolderContainer>
-      <h3 className=''>Folders</h3>
-      <div className='show-folder'>
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
-        <FolderWithName />
+      <h3 className="">Folders</h3>
+      <div className="show-folder">
+        {foldersArr.map((e,id) => {
+          return <FolderWithName folderName={e} key={id}/>;
+        })}
       </div>
     </ShowFolderContainer>
-  )
-}
+  );
+};
 
-export default ShowFolders
+export default ShowFolders;

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { UilPlus } from "@iconscout/react-unicons";
 import { Button } from "../Common/Common";
 import { UilFolderPlus } from "@iconscout/react-unicons";
+import { GlobalContext } from "../../App";
 const SidebarContainer = styled("div")`
   width: 100%;
   background-color: #fafafa;
@@ -23,16 +24,18 @@ const SidebarContainer = styled("div")`
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
   }
 `;
 const Sidebar = () => {
+  const {isOpen,setIsOpen} = useContext(GlobalContext);
   return (
     <SidebarContainer>
       <Button className="add-new">
         <UilPlus />
         New
       </Button>
-      <Button className="add-new-folder">
+      <Button className="add-new-folder" onClick={()=>{setIsOpen(true)} }>
         <UilFolderPlus />
         New Folder
       </Button>

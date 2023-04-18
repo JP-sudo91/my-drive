@@ -1,19 +1,19 @@
-import React from 'react'
-import styled from 'styled-components'
-import Sidebar from '../SideBar/Sidebar'
-import MainPage from './MainPage'
+import React, { useState } from "react";
+import styled from "styled-components";
+import Sidebar from "../SideBar/Sidebar";
+import MainPage from "./MainPage";
 
-const MainSection = styled('div')`
-    display: flex;
-    width: 100%;
-`
+const MainSection = styled("div")`
+  display: flex;
+  width: 100%;
+`;
 const MainContainer = () => {
   return (
     <MainSection>
-        <Sidebar />
-        <MainPage />
+      <Sidebar />
+      <MainPage />
     </MainSection>
-  )
-}
+  );
+};
 
-export default MainContainer
+export default MainContainer;
