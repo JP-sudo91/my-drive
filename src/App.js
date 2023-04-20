@@ -12,6 +12,7 @@ const AppContainer = styled("div")`
 export const GlobalContext = createContext();
 
 function App() {
+  const [hello,setHello] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [foldersArr, setFoldersArr] = useState([]);
   return (
