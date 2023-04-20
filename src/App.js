@@ -13,23 +13,25 @@ const AppContainer = styled("div")`
 export const GlobalContext = createContext();
 
 function App() {
-  const [hello,setHello] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenNewFolder, setIsOpenNewFolder] = useState(false);
+  const [isOpenUpload, setIsOpenUpload] = useState(false);
   const [foldersArr, setFoldersArr] = useState([]);
   return (
     <GlobalContext.Provider
       value={{
-        isOpen,
-        setIsOpen,
+        isOpenNewFolder,
+        setIsOpenNewFolder,
+        isOpenUpload,
+        setIsOpenUpload,
         foldersArr,
         setFoldersArr,
       }}
     >
-      {/* {isOpen ? <NewFolderPopup /> : <></>} */}
-      {isOpen ? <UploadFilesFolder /> : <></>}
-      <AppContainer className="App" isOpen={isOpen}>
+      {isOpenNewFolder ? <NewFolderPopup /> : <></>}
+      {isOpenUpload ? <UploadFilesFolder /> : <></>}
+      <AppContainer className="App" isOpen={isOpenNewFolder || isOpenUpload}>
         <Header />
-        <MainContainer  />
+        <MainContainer />
       </AppContainer>
     </GlobalContext.Provider>
   );
