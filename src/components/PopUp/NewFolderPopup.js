@@ -52,7 +52,7 @@ const NewFolderPopupContainer = styled("div")`
 `;
 const NewFolderPopup = () => {
   const [inputVal, setInputVal] = useState("");
-  const { setIsOpen, setFoldersArr } = useContext(GlobalContext);
+  const { setIsOpenNewFolder, setFoldersArr } = useContext(GlobalContext);
   return (
     <NewFolderPopupContainer>
       <div className="folder-container">
@@ -69,7 +69,7 @@ const NewFolderPopup = () => {
           <Button
             onClick={() => {
               setFoldersArr((p) => [...p, inputVal]);
-              setIsOpen(false);
+              setIsOpenNewFolder(false);
             }}
           >
             Create

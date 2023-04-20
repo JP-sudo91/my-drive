@@ -28,13 +28,14 @@ const SidebarContainer = styled("div")`
   }
 `;
 const Sidebar = () => {
-  const {isOpen,setIsOpen} = useContext(GlobalContext);
+  const { isOpenNewFolder, setIsOpenNewFolder, isOpenUpload, setIsOpenUpload } =
+    useContext(GlobalContext);
   return (
     <SidebarContainer>
       <Button
         className="add-new"
         onClick={() => {
-          setIsOpen(true);
+          setIsOpenUpload(true);
         }}
       >
         <UilPlus />
@@ -43,7 +44,7 @@ const Sidebar = () => {
       <Button
         className="add-new-folder"
         onClick={() => {
-          setIsOpen(true);
+          setIsOpenNewFolder(true);
         }}
       >
         <UilFolderPlus />
