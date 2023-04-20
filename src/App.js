@@ -4,6 +4,7 @@ import MainContainer from "./components/MainContainer/MainContainer";
 import { createContext, useState } from "react";
 import NewFolderPopup from "./components/PopUp/NewFolderPopup";
 import styled from "styled-components";
+import UploadFilesFolder from "./components/PopUp/UploadFilesFolder";
 const AppContainer = styled("div")`
   z-index: ${(p) => p.isOpen && "-1"};
   opacity: ${(p) => (p.isOpen ? 0.5 : 1)};
@@ -24,7 +25,8 @@ function App() {
         setFoldersArr,
       }}
     >
-      {isOpen ? <NewFolderPopup /> : <></>}
+      {/* {isOpen ? <NewFolderPopup /> : <></>} */}
+      {isOpen ? <UploadFilesFolder /> : <></>}
       <AppContainer className="App" isOpen={isOpen}>
         <Header />
         <MainContainer  />

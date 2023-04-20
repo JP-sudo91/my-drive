@@ -31,11 +31,21 @@ const Sidebar = () => {
   const {isOpen,setIsOpen} = useContext(GlobalContext);
   return (
     <SidebarContainer>
-      <Button className="add-new">
+      <Button
+        className="add-new"
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
         <UilPlus />
         New
       </Button>
-      <Button className="add-new-folder" onClick={()=>{setIsOpen(true)} }>
+      <Button
+        className="add-new-folder"
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
         <UilFolderPlus />
         New Folder
       </Button>
