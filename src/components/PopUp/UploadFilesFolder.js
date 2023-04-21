@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { GlobalContext } from "../../App";
 
 const UploadFilesFolderContainer = styled("div")`
   display: flex;
@@ -27,26 +28,46 @@ const UploadFilesFolderContainer = styled("div")`
 `;
 const UploadFilesFolder = () => {
   const [fileList, setFileList] = useState(null);
+  const { isOpenUpload, setIsOpenUpload } = useContext(GlobalContext);
   const handleFileChange = (e) => {
     setFileList(e.target.files);
   };
 
+  //when click outside of the ref-element
+  const handleClickOutside = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setIsOpenUpload(false);
+    }
+  };
+
+  //make the event which click than handleClickOutside call
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+  const ref = useRef(null);
   const files = fileList ? [...fileList] : [];
   return (
-    <UploadFilesFolderContainer>
-      <div className="upload-content">
-        <input type="file" onChange={handleFileChange} multiple />
-        <ul>
-          {files.map((file, i) => {
-            return (
-              <li key={i}>
-                {file.name} - {file.type}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </UploadFilesFolderContainer>
+    <>
+      {isOpenUpload && (
+        <UploadFilesFolderContainer>
+          <div className="upload-content" ref={ref}>
+            <input type="file" onChange={handleFileChange} multiple />
+            <ul>
+              {files.map((file, i) => {
+                return (
+                  <li key={i}>
+                    {file.name} - {file.type}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </UploadFilesFolderContainer>
+      )}
+    </>
   );
 };
 
