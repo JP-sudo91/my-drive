@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { GlobalContext } from "../../App";
-
+import { Button } from "../Common/Common";
+import FilesUpload from "../../assets/png-transparent-computer-icons-symbol-upload-logo-symbol-miscellaneous-blue-angle-thumbnail-transformed.png";
 const UploadFilesFolderContainer = styled("div")`
   display: flex;
   flex-direction: column;
@@ -24,13 +25,16 @@ const UploadFilesFolderContainer = styled("div")`
       rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     transition: all 0.1ms ease-in-out 0.1ms;
     background: #fafafa;
+    img {
+      width: 250px;
+    }
   }
 `;
 const UploadFilesFolder = () => {
-  const [fileList, setFileList] = useState(null);
-  const { isOpenUpload, setIsOpenUpload } = useContext(GlobalContext);
+  const { isOpenUpload, setIsOpenUpload, filesList, setFilesList } =
+    useContext(GlobalContext);
   const handleFileChange = (e) => {
-    setFileList(e.target.files);
+    setFilesList((prev) => [...prev, ...e.target.files]);
   };
 
   //when click outside of the ref-element
@@ -48,22 +52,34 @@ const UploadFilesFolder = () => {
     };
   }, []);
   const ref = useRef(null);
-  const files = fileList ? [...fileList] : [];
+  const inputClick = useRef(null);
+  const selectFile = () => {
+    inputClick.current.click();
+  };
+  const files = filesList ? [...filesList] : [];
   return (
     <>
       {isOpenUpload && (
         <UploadFilesFolderContainer>
           <div className="upload-content" ref={ref}>
-            <input type="file" onChange={handleFileChange} multiple />
-            <ul>
-              {files.map((file, i) => {
-                return (
-                  <li key={i}>
-                    {file.name} - {file.type}
-                  </li>
-                );
-              })}
-            </ul>
+            <div>
+              <img src={FilesUpload} alt="file-upload" />
+            </div>
+            <input
+              type="file"
+              onChange={handleFileChange}
+              multiple
+              style={{ display: "none" }}
+              ref={inputClick}
+            />
+            <Button
+              onClick={() => {
+                selectFile();
+                // setIsOpenUpload(false)
+              }}
+            >
+              Select Files
+            </Button>
           </div>
         </UploadFilesFolderContainer>
       )}

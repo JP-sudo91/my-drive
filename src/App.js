@@ -16,6 +16,7 @@ function App() {
   const [isOpenNewFolder, setIsOpenNewFolder] = useState(false);
   const [isOpenUpload, setIsOpenUpload] = useState(false);
   const [foldersArr, setFoldersArr] = useState([]);
+  const [filesList,setFilesList] = useState([]);
   return (
     <GlobalContext.Provider
       value={{
@@ -25,6 +26,8 @@ function App() {
         setIsOpenUpload,
         foldersArr,
         setFoldersArr,
+        filesList,
+        setFilesList,
       }}
     >
       {isOpenNewFolder ? <NewFolderPopup /> : <></>}

@@ -14,12 +14,16 @@ const ShowFolders = () => {
   const { foldersArr, setFoldersArr } = useContext(GlobalContext);
   return (
     <ShowFolderContainer>
-      <h3 className="">Folders</h3>
-      <div className="show-folder">
-        {foldersArr.map((e,id) => {
-          return <FolderWithName folderName={e} key={id}/>;
-        })}
-      </div>
+      {foldersArr.length > 0 && (
+        <>
+          <h3 className="">Folders</h3>
+          <div className="show-folder">
+            {foldersArr.map((e, id) => {
+              return <FolderWithName folderName={e} key={id} />;
+            })}
+          </div>
+        </>
+      )}
     </ShowFolderContainer>
   );
 };
