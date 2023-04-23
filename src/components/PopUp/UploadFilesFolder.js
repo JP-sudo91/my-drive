@@ -34,7 +34,24 @@ const UploadFilesFolder = () => {
   const { isOpenUpload, setIsOpenUpload, filesList, setFilesList } =
     useContext(GlobalContext);
   const handleFileChange = (e) => {
-    setFilesList((prev) => [...prev, ...e.target.files]);
+    const files = [...e.target.files];
+    files.map((file) => {
+      let fileReader = new FileReader();
+      fileReader.onload = () => {
+        let data = fileReader.result;
+        setFilesList((prev) => [
+          ...prev,
+          {
+            name: file.name,
+            size: file.size,
+            type: file.type,
+            data: data,
+          },
+        ]);
+      };
+      fileReader.readAsDataURL(file);
+    });
+    // setFilesList((prev) => [...prev, ...e.target.files]);
   };
 
   //when click outside of the ref-element

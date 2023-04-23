@@ -14,7 +14,11 @@ const ShowFilesContainer = styled("div")`
     height: 200px;
     padding: 10px;
     .file-name {
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       background: rgb(75 139 244);
       border-radius: 20px;
       padding-bottom: 10px;
@@ -23,6 +27,7 @@ const ShowFilesContainer = styled("div")`
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
       img {
+        cursor: pointer;
         width: 150px;
         height: 150px;
         width: 150px;
@@ -57,14 +62,14 @@ const ShowFiles = () => {
                 <>
                   <div className="file-box">
                     <div className="file-name">
-                      <img src={Files} alt="file" />
+                      <img src={file.data} alt="file" />
+                      {/* <iframe src={file.data} className="iframe" /> */}
                       {file.name.length > 10
-                        ? file.name.substring(0, 10) +
+                        ? file.name.substring(0, 6) +
                           "..." +
-                          file.name.substring(file.name.length - 5)
+                          file.name.substring(file.name.length - 8)
                         : file.name}
                     </div>
-                    {/* <div className="time-create">{new Date(file.lastModified)}</div> */}
                   </div>
                 </>
               );
